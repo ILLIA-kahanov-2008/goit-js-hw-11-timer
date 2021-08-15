@@ -41,6 +41,7 @@ class CountdownTimer {
   }
 
   start = () => {
+    console.log("start", this);
     this.intervalId = setInterval(() => {
       this.updateTimer(this.getRefs());
     }, 1000);
@@ -51,8 +52,8 @@ class CountdownTimer {
     this.getRefs().container.innerHTML = "<h1>Time is over</h1>";
   };
 
-  addListeners({ stopBtn }) {
-    // startBtn.addEventListener("click", this.start);
+  addListeners({ startBtn, stopBtn }) {
+    startBtn.addEventListener("click", this.start);
     stopBtn.addEventListener("click", this.stop);
   }
 }
@@ -60,26 +61,25 @@ class CountdownTimer {
 // const newTimerBtn = document.querySelector('.new-timer');
 // newTimerBtn.addEventListener('click', createNewTimer)
 
-function setTime() {
-  const userYear = prompt('Edit countdown year in number format (example, 2021)');
-  const userMonth = prompt('Edit countdown month in number format (example, 01)');
-  const userDay = prompt('Edit countdown day in number format (example, 01)');
-  const userHours = prompt('Edit countdown hours in number format (example, 01)');
-  const userMinutes = prompt('Edit countdown minutes in number format (example, 01)');
-  const timer = new CountdownTimer({
-    selector: '#timer-1',
-  targetDate: new Date(`${userYear}-${userMonth}-${userDay}T${userHours}:${userMinutes}`),
-  // targetDate: new Date(`${userDate} ${userTime}`),
-  });
+// function createNewTimer() {
+//   const userYear = prompt('Edit countdown year in number format (example, 2021)');
+//   const userMonth = prompt('Edit countdown month in number format (example, 01)');
+//   const userDay = prompt('Edit countdown day in number format (example, 01)');
+//   const userHours = prompt('Edit countdown hours in number format (example, 01)');
+//   const userMinutes = prompt('Edit countdown minutes in number format (example, 01)');
+//   const timer = new CountdownTimer({
+//     selector: '#timer-1',
+//   targetDate: new Date(`${userYear}-${userMonth}-${userDay}T${userHours}:${userMinutes}`),
+//   // targetDate: new Date(`${userDate} ${userTime}`),
+//   });
 
-  timer.start();
-  timer.addListeners(timer.getRefs())
-}
+//   timer.start();
+//   timer.addListeners(timer.getRefs())
+// }
 
-setTime();
-// const newYearTimer = new CountdownTimer({
-//   selector: "#timer-1",
-//   targetDate: new Date("Jan 01, 2022 00:00"),
-// });
+const newYearTimer = new CountdownTimer({
+  selector: "#timer-1",
+  targetDate: new Date("Jan 01, 2022 00:00"),
+});
 
-// newYearTimer.addListeners(newYearTimer.getRefs());
+newYearTimer.addListeners(newYearTimer.getRefs());
